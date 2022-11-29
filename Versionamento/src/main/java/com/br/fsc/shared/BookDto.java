@@ -11,13 +11,13 @@ public class BookDto implements Serializable {
 	private Long id;
 	private String title;
 	private String description;
-	private Integer pages;
+	private int pages;
 	private Double value;
 	
 	public BookDto() {
 	}
 
-	public BookDto(Long id, String title, String description, Integer pages, Double value) {
+	public BookDto(Long id, String title, String description, int pages, Double value) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -50,11 +50,11 @@ public class BookDto implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getPages() {
+	public int getPages() {
 		return pages;
 	}
 
-	public void setPages(Integer pages) {
+	public void setPages(int pages) {
 		this.pages = pages;
 	}
 

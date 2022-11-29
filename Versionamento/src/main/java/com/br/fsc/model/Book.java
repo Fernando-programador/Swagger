@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "livros")
 public class Book implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -23,15 +25,15 @@ public class Book implements Serializable{
 	@Column(name = "titulo", length = 50, unique = true)
 	private String title;
 	
-	@Column(name = "descricao", length = 250, unique = false)
+	@Column(name = "descricao", length = 250)
 	private String description;
 	
-	@NotBlank
-	@Column(name = "paginas", length = 50, unique = false)
-	private Integer pages;
+	
+	@Column(name = "paginas", length = 50)
+	private int pages;
 	
 
-	@Column(name = "valor", length = 10, unique = false)
+	@Column(name = "valor", length = 10)
 	private Double value;
 
 
@@ -39,7 +41,7 @@ public class Book implements Serializable{
 	}
 
 
-	public Book(Long id, @NotBlank String title, String description, @NotBlank Integer pages, Double value) {
+	public Book(Long id, @NotBlank String title, String description, int pages, Double value) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -79,12 +81,12 @@ public class Book implements Serializable{
 	}
 
 
-	public Integer getPages() {
+	public int getPages() {
 		return pages;
 	}
 
 
-	public void setPages(Integer pages) {
+	public void setPages(int pages) {
 		this.pages = pages;
 	}
 

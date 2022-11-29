@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.br.fsc.exception.ResourceNotFoundException;
 import com.br.fsc.model.Book;
 import com.br.fsc.repository.BookRepository;
 import com.br.fsc.shared.BookDto;
@@ -44,14 +45,14 @@ public class BookService {
 	}
 
 	
-	public BookDto readId(@PathVariable ("id") Long id) {
+	public Optional<BookDto> readId(Long id) {
 		 Optional<Book> book = bookRepository.findById(id);
 		 
 		 ModelMapper mapper = new ModelMapper();
 		 
-		 BookDto bookDto = mapper.map(book, BookDto.class);
+		 BookDto bookDto = mapper.map(book.get(), BookDto.class);
 		 
-		 return bookDto;
+		 return Optional.of(bookDto);
 		 
 	}
 	
@@ -67,11 +68,12 @@ public class BookService {
 		return bookDto;
 	}
 	
-	public void deleteId (@PathVariable ("id") Long id) {
+	public void deleteId (Long id) {
+		var book = bookRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(
+						"Id " + id + " não encontrado"));
 		
-		
-		bookRepository.deleteById(id);
-		
+		bookRepository.delete(book);
 	}
 	
 	
