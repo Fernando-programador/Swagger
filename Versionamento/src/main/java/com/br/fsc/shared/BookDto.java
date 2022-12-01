@@ -3,16 +3,27 @@ package com.br.fsc.shared;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.hateoas.RepresentationModel;
 
-public class BookDto implements Serializable {
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
+
+@JsonPropertyOrder({"id","title","description","pages","value",})
+public class BookDto extends RepresentationModel<BookDto> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
 	private Long id;
+	
+	//@JsonProperty("my_Title") para mudar o nome
 	private String title;
+	
 	private String description;
+	
 	private int pages;
 	private Double value;
+	
 	
 	public BookDto() {
 	}
@@ -26,6 +37,11 @@ public class BookDto implements Serializable {
 		this.value = value;
 	}
 
+	
+	
+	
+
+	@Mapping(value = "id")
 	public Long getId() {
 		return id;
 	}
@@ -80,10 +96,13 @@ public class BookDto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		BookDto other = (BookDto) obj;
-		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
-				&& Objects.equals(pages, other.pages) && Objects.equals(title, other.title)
-				&& Objects.equals(value, other.value);
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id) && pages == other.pages
+				&& Objects.equals(title, other.title) && Objects.equals(value, other.value);
 	}
+
+
+
+	
 
 	
 	
