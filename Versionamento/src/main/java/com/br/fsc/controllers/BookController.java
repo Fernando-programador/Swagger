@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.fsc.DTO.BookDto;
 import com.br.fsc.service.BookService;
-import com.br.fsc.shared.BookDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -57,6 +57,8 @@ public class BookController {
 	public ResponseEntity<BookDto> criar(@RequestBody BookDto bookDto){
 		return new ResponseEntity<>(bookService.create(bookDto), HttpStatus.CREATED);
 	}
+	
+	
 	/*
 	@PostMapping(value = "/v2",
 			consumes =  {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -65,6 +67,8 @@ public class BookController {
 		return new ResponseEntity<>(bookService.createV2(bookDtoV2), HttpStatus.CREATED);
 	}
 */
+	
+	
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@Operation(summary = "FindById",
 				description = "Object find id",
@@ -88,6 +92,8 @@ public class BookController {
 	public ResponseEntity<List<BookDto>> obterTodos(){
 		return new ResponseEntity<>(bookService.readAll(), HttpStatus.OK);
 	}
+	
+	
 	
 	@GetMapping(value = "/{id}", 
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -113,6 +119,8 @@ public class BookController {
 	public ResponseEntity <Optional<BookDto>> obterPorId(@PathVariable ("id") Long id){
 		return new ResponseEntity<>(bookService.readId(id), HttpStatus.OK);
 	}
+	
+	
 	
 	@PutMapping(value = "/{id}",
 			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},

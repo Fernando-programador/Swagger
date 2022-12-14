@@ -11,11 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.fsc.DTO.BookDto;
 import com.br.fsc.controllers.BookController;
 import com.br.fsc.exception.ResourceNotFoundException;
 import com.br.fsc.model.Book;
 import com.br.fsc.repository.BookRepository;
-import com.br.fsc.shared.BookDto;
 
 @Service
 public class BookService {
@@ -23,6 +23,7 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
+	private BookDto bookDto;
 	
 	public BookDto create(BookDto bookDto){
 		//cancelamos o id de book
@@ -36,6 +37,7 @@ public class BookService {
 		//copiamos o book para bookDto
 		bookDto.setId(book.getId());
 		//retornamos o bookDto
+		 bookDto.add(linkTo(methodOn(BookController.class).obterPorId(bookDto.getId())).withSelfRel());
 		return bookDto;	
 	}
 	/*
@@ -62,9 +64,15 @@ public class BookService {
 	public List<BookDto> readAll(){
 		var book = bookRepository.findAll();
 		
-		return book.stream().map(bookDto -> new ModelMapper()
+		
+	var Dto = book.stream().map(bookDto -> new ModelMapper()
 				.map(bookDto, BookDto.class))
-				.collect(Collectors.toList());
+		.collect(Collectors.toList());
+		
+		Dto.stream()
+		.forEach(p ->p.add(linkTo(methodOn(BookController.class)
+				.obterPorId(p.getId())).withSelfRel()));
+		return Dto;
 	}
 
 	
@@ -89,6 +97,7 @@ public class BookService {
 		Book book = mapper.map(bookDto, Book.class);
 		
 		book = bookRepository.save(book);
+		 bookDto.add(linkTo(methodOn(BookController.class).obterPorId(bookDto.getId())).withSelfRel());
 		return bookDto;
 	}
 	

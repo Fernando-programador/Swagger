@@ -1,4 +1,4 @@
-package com.br.fsc.shared;
+package com.br.fsc.DTO;
 
 import java.io.Serializable;
 import java.util.Objects;
