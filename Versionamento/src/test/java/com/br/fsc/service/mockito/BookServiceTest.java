@@ -61,8 +61,6 @@ class BookServiceTest {
 		var resultado = service.readId(1L);
 		
 		assertNotNull(resultado);
-		assertEquals("", resultado.());
-
 		System.out.println(resultado.toString());	
 		assertTrue(resultado.toString().contains("links: [</book/1>;rel=\"self\"]"));
 		// na linha acima deixe o contaisn vazio  e rode a aplicação

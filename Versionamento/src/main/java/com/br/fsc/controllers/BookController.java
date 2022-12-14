@@ -70,8 +70,8 @@ public class BookController {
 	
 	
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	@Operation(summary = "FindById",
-				description = "Object find id",
+	@Operation(summary = "FindByALL",
+				description = "Object find id ALL",
 				tags = {"Book"},
 				responses = {
 						@ApiResponse(content = {

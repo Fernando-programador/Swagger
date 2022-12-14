@@ -16,7 +16,7 @@ public class OpenApiConfig {
 	public OpenAPI customOpenApi() {
 		return new OpenAPI()
 				.info(new Info()
-						.title("Rest Fuul API JAva 17 Spring boot 3")
+						.title("Rest Full API Java 17 Spring boot 3")
 						.version("v1")
 						.description("Minha descrição da APi")
 						.termsOfService("\"https:\\\\ajeitandoseulado.com.br\"")
