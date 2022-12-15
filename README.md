@@ -2,6 +2,47 @@
 Meu Site: 
 https://ajeitandoseulado.com.brPara adionar o Hateos foi instalado a dependência no pow.xml
 
+
+para usar o DozerMapper crie uma class com o nome DOzerMapper
+
+package com.br.fsc.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
+
+public class DozerMapper {
+	
+package com.br.fsc.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
+
+public class DozerMapper {
+
+	private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+
+	public static <O, D> D parseObject(O origin, Class<D> destination) {
+		return mapper.map(origin, destination);
+	}
+
+	public static <O, D> List<D> parseListObject(List<O> origin, Class<D> destination) {
+		List<D> destinationObjects = new ArrayList<D>();
+		for (O o : origin) {
+			destinationObjects.add(mapper.map(o, destination));
+		}
+		return destinationObjects;
+	}
+
+}
+
+Paa Hateos implemetei no meu pom.xml
+
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
@@ -36,4 +77,6 @@ http://localhost:8080/v3/api-docs
 
 http://localhost:8080/swagger-ui/index.html
 ![swaggerem index](https://user-images.githubusercontent.com/95228196/207506377-0a080987-2aac-48e7-80d1-7fa3f1b6e159.png)
+
+![swagercompleto](https://user-images.githubusercontent.com/95228196/207935924-7fbbc3cd-a666-469d-a4d3-0c57f0b8808e.png)
 
