@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import com.github.dozermapper.core.Mapping;
 
 @Entity
 @Table(name = "livros")
