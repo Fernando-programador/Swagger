@@ -57,7 +57,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Dependencia para mapper o DTO -->
+		<!-- Dependencia para ModelMapper o BookDto -->
 		<dependency>
 		    <groupId>org.modelmapper</groupId>
 		    <artifactId>modelmapper</artifactId>
@@ -71,7 +71,7 @@
 		    <!--<version>2.14.1</version> -->
 		</dependency>
 		
-		<!-- Mapper obs: não funcionouu -->
+		<!-- sependencia para DozerMapper do PersonDto -->
 		<dependency>
 		  <groupId>com.github.dozermapper</groupId>
 		  <artifactId>dozer-core</artifactId>
@@ -84,7 +84,7 @@
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.13</version>
 		</dependency>
-		<!--
+		<!-- essa dependencia não deu certo
 		<dependency>
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -97,7 +97,7 @@
 			<artifactId>jackson-dataformat-yaml</artifactId>
 		</dependency> 
 		
-		<!--dependencia para link com hateos -->
+		<!--dependencia para link com Hateos -->
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>

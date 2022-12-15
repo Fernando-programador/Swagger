@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "autores")
@@ -23,17 +24,18 @@ public class Person  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome", nullable = false, unique = true, length = 120)
+	
+	@Column(name = "nome", unique = true, length = 120)
 	private String author;
 	
-	@Column(name = "data", nullable = false)
+	@Column(name = "data")
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-	@Column(name = "salario", nullable = false)
+	@Column(name = "salario")
 	private Double wage;
 	
-	@Column(name = "livros escritos")
+	@Column(name = "livros_escritos")
 	private Integer work;
 
 	public Person() {

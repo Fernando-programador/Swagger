@@ -37,11 +37,12 @@ public class PersonService {
 		
 		var entity = DozerMapper.parseObject(personDto, Person.class);
 		
+		
 		var person = DozerMapper.parseObject(personRepostory.save(entity), PersonDto.class);
+		personDto.setId(person.getId());
+		personDto.add(linkTo(methodOn(PersonController.class).obterPorId(personDto.getId())).withSelfRel());
 		
-		person.add(linkTo(methodOn(PersonController.class).obterPorId(person.getId())).withSelfRel());
-		
-		return person;	
+		return personDto;	
 	}
 	
 	
@@ -75,7 +76,7 @@ public class PersonService {
 	
 	public PersonDto update(PersonDto personDto, Long id) {
 		logger.info("Update People");
-		
+		personDto.setId(id);
 		var entity = personRepostory.findById(personDto.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("id " + id + " not exists is repository!!!"));
 		
@@ -84,7 +85,7 @@ public class PersonService {
 		entity.setWage(personDto.getWage());
 		entity.setWork(personDto.getWork());
 		
-		var person = DozerMapper.parseObject(entity, PersonDto.class);
+		var person = DozerMapper.parseObject(personRepostory.save(entity), PersonDto.class);
 		
 		person.add(linkTo(methodOn(PersonController.class).obterPorId(personDto.getId())).withSelfRel());
 		
