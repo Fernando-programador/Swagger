@@ -1,12 +1,13 @@
-package com.br.fsc.shared;
+package com.br.fsc.DTO;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.github.dozermapper.core.Mapping;
+
 
 @JsonPropertyOrder({"id","title","description","pages","value",})
 public class BookDto extends RepresentationModel<BookDto> implements Serializable {
@@ -41,7 +42,7 @@ public class BookDto extends RepresentationModel<BookDto> implements Serializabl
 	
 	
 
-	@Mapping(value = "id")
+	//@Mapping("id")
 	public Long getId() {
 		return id;
 	}
